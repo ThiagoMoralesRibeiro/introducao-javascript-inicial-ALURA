@@ -34,6 +34,7 @@ for (i = 0; i < paciente.length; i++) {
 
     pesoValido = ValidaPeso(peso_value);
     if(!pesoValido){
+        pesoEhValida = false
         pacientes.querySelector(".info-imc").innerHTML = "Peso inválido";
         pacientes.classList.add("pacienteInvalido");//dessa forma eu consigo adicionar uma classe 
         //document.querySelector(".paciente").style.background = "red";
@@ -41,19 +42,20 @@ for (i = 0; i < paciente.length; i++) {
 
     alturaValida = ValidaAltura(altura_value);
     if(!alturaValida){
+        alturaEhValida = false
         pacientes.querySelector(".info-imc").innerHTML = "Altura inválida";
         pacientes.classList.add("pacienteInvalido");//dessa forma eu consigo adicionar uma classe 
         //document.querySelector(".paciente").style.background = "red";
     
     }
 
-    if(!alturaValida && !pesoValido){
+    /*if(!alturaValida && !pesoValido){
 
-        pacientes.querySelector(".info-imc").innerHTML = "Altura inválida ou Peso inválido";
+        pacientes.querySelector(".info-imc").innerHTML = "Altura inválida e Peso inválido";
         pacientes.classList.add("pacienteInvalido");//dessa forma eu consigo adicionar uma classe 
         //document.querySelector(".paciente").style.background = "red";
 
-    }
+    }*/
 }
 
 function ValidaPeso(peso) { 

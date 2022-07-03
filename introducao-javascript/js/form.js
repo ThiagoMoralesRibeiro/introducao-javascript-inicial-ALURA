@@ -7,7 +7,7 @@ function addNewPacient(event) {
     //A variável form se refere a todo o formulário q está sendo puxado
 
     form = document.querySelector("#form-adiciona");
-    console.log(form);
+    //console.log(form);
     
     //adiciono os valores presentes no formulário a suas respectivas variáveis. Criei um objeto e vou armazenar os dados da função dentro dele
     
@@ -15,10 +15,11 @@ function addNewPacient(event) {
     pacientValidate(myPacient);
 
     pacienteTr= createPacienteTR(myPacient);
-    console.log(pacienteTr);
+    //console.log(pacienteTr);
 
+    
     if(!pacientValidate(paciente)){
-        alert ("paciente");
+        console.log("Paciente inválido");
         return;
     }
 
@@ -92,11 +93,11 @@ function createPacienteTD(data, classe) {
 
 function pacientValidate(paciente) { 
 
-    if(ValidaPeso(paciente.peso) && ValidaAltura(paciente.altura)){
-        return true;
+    if(ValidaPeso(paciente.peso)){
+        return "true";
     }
     else{
-        return false;
+        return "false";
     
     }
 
