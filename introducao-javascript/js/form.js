@@ -15,11 +15,10 @@ function addNewPacient(event) {
     pacientValidate(myPacient);
 
     pacienteTr= createPacienteTR(myPacient);
-    //console.log(pacienteTr);
+    console.log(pacienteTr);
 
-    
     if(!pacientValidate(paciente)){
-        console.log("Paciente inválido");
+        console.log("bfrh")
         return;
     }
 
@@ -93,14 +92,12 @@ function createPacienteTD(data, classe) {
 
 function pacientValidate(paciente) { 
 
-    if(ValidaPeso(paciente.peso)){
-        return "true";
+    if(ValidaPeso(paciente.peso) && ValidaAltura(paciente.altura)){
+        return true;
     }
     else{
-        return "false";
+        return false;
     
     }
 
 }
-
-

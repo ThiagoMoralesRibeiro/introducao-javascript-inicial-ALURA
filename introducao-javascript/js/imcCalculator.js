@@ -17,51 +17,55 @@ for (i = 0; i < paciente.length; i++) {
     console.log(pacientes);
 
     peso_tabela = pacientes.querySelector(".info-peso");// seleciono a classe presente no <td> que armazena o valor do peso
-    peso = peso_tabela.textContent;//puxo o valor da variável
+    peso_value = peso_tabela.textContent;//puxo o valor da variável
 
     altura_tabela=pacientes.querySelector(".info-altura");//seleciono a classe presente no <td> que armazena o valor da altura
-    altura = altura_tabela.textContent;// puxo o valor da variável
+    altura_value = altura_tabela.textContent;// puxo o valor da variável
 
 
-    function imcCalc(peso, altura) { //função para calcular o imc
-
-        calcular = peso / (altura * altura)
-        
-        return calcular;
-    }
+    
 
     /* Validação do peso e da altura */
-    imcTd = document.querySelector(".info-imc")
-    pesoValido = ValidaPeso(peso);
-    alturaValida = ValidaAltura(altura);
 
+    tdImc = pacientes.querySelector(".info-imc");
+
+    pesoValido = ValidaPeso(peso_value);
     if(!pesoValido){
-        console.log("Peso Inválido")
-        pesoValido = false;
+        pesoValido = false
         pacientes.querySelector(".info-imc").innerHTML = "Peso inválido";
         pacientes.classList.add("pacienteInvalido");//dessa forma eu consigo adicionar uma classe 
         //document.querySelector(".paciente").style.background = "red";
     }
 
-    
+    alturaValida = ValidaAltura(altura_value);
     if(!alturaValida){
-        console.log("Altura inválida")
-        alturaValida = false;
+        alturaValida = false
         pacientes.querySelector(".info-imc").innerHTML = "Altura inválida";
         pacientes.classList.add("pacienteInvalido");//dessa forma eu consigo adicionar uma classe 
         //document.querySelector(".paciente").style.background = "red";
     
     }
 
-   
+    if(!alturaValida && !pesoValido){
 
-    /*if(!alturaValida && !pesoValido){
-
-        pacientes.querySelector(".info-imc").innerHTML = "Altura inválida e Peso inválido";
+        pacientes.querySelector(".info-imc").innerHTML = "Altura inválida ou Peso inválido";
         pacientes.classList.add("pacienteInvalido");//dessa forma eu consigo adicionar uma classe 
         //document.querySelector(".paciente").style.background = "red";
 
-    }*/
+    }
+
+    if (pesoValido && alturaValida) { 
+        imc = imcCalc(peso_value,altura_value);
+        tdImc.textContent = imc.toFixed(1);
+    
+    }
+}
+
+function imcCalc(peso, altura) { //função para calcular o imc
+
+    calcular = peso / (altura * altura)
+    
+    return calcular;
 }
 
 function ValidaPeso(peso) { 
@@ -82,10 +86,7 @@ function ValidaAltura(altura) {
     }
 }
 
-if (alturaValida && pesoValido) {
-    imc = imcCalc(peso, altura);
-    imcTd.textContent = imc;
-}
+
 
 
 
