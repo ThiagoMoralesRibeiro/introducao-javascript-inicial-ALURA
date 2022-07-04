@@ -15,16 +15,19 @@ function addNewPacient(event) {
     pacientValidate(myPacient);
 
     pacienteTr= createPacienteTR(myPacient);
-    console.log(pacienteTr);
+    //console.log(pacienteTr);
 
-    if(!pacientValidate(paciente)){
-        console.log("bfrh")
+    msgErro = pacientValidate(paciente);
+    if(msgErro.length > 0){
+        erro = document.querySelector("#msg-erro");
+        erro.textContent = msgErro;
         return;
     }
+    
 
     
     pacientTable = document.querySelector("#tabela-pacientes");
-    pacientTable.appendChild(pacienteTr);
+    pacientTable.appendChild(pacienteTr); 
 
     
 
@@ -93,11 +96,18 @@ function createPacienteTD(data, classe) {
 function pacientValidate(paciente) { 
 
     if(ValidaPeso(paciente.peso) && ValidaAltura(paciente.altura)){
-        return true;
-    }
-    else{
-        return false;
-    
+        errors = [];
+
+        if(!ValidaPeso(paciente.peso)){
+            errors.push = "Peso inválido"; 
+        }
+        if(!ValidaAltura(paciente.altura)){
+            errors.push = "Altura Inválida";
+        }
+        if (!ValidaAltura(paciente.altura) && !ValidaPeso(paciente.peso)) {
+            errors.push = "Peso e Altura inválidos"
+        }
+        return errors;
     }
 
 }
