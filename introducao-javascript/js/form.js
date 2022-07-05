@@ -19,8 +19,7 @@ function addNewPacient(event) {
 
     msgErro = pacientValidate(paciente);
     if(msgErro.length > 0){
-        erro = document.querySelector("#msg-erro");
-        erro.textContent = msgErro;
+        showErrorMessage(msgErro);
         return;
     }
     
@@ -110,4 +109,19 @@ function pacientValidate(paciente) {
         return errors;
     }
 
+}
+
+function showErrorMessage(errors) { 
+    ul = document.querySelector("#msg-erro");
+    /*for (let i = 0; i < errors.length; i++) {
+        errorValue = errors[i];
+        li = document.createElement("li");
+        li.textContent = errorValue; 
+        ul.appendChild(li);   
+    }*/
+    errors.forEach(function (errorValue) { 
+        li = document.createElement("li");
+        li.textContent = errorValue;
+        ul.appendChild(li);   
+    });
 }
