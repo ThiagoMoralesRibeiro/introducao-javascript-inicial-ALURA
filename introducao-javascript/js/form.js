@@ -12,12 +12,14 @@ function addNewPacient(event) {
     //adiciono os valores presentes no formulário a suas respectivas variáveis. Criei um objeto e vou armazenar os dados da função dentro dele
     
     myPacient = addDataForm(form);
-    pacientValidate(myPacient);
+    //console.log(myPacient.nome) Pelo fato do myPaciente estar relacionado com meu objeto paciente, eu consigo declarar os atributos do objeto na própria variável;
 
     pacienteTr= createPacienteTR(myPacient);
     //console.log(pacienteTr);
 
-    msgErro = pacientValidate(paciente);
+    msgErro = pacientValidate(myPacient);
+    console.log(msgErro);
+
     if(msgErro.length > 0){
         showErrorMessage(msgErro);
         return;
@@ -27,6 +29,9 @@ function addNewPacient(event) {
     
     pacientTable = document.querySelector("#tabela-pacientes");
     pacientTable.appendChild(pacienteTr); 
+
+    messageErrors = document.querySelector("#msg-erro")
+    messageErrors.innerHTML = ""; //isso permite que por mais que o meu usuário tenha colocado os valores errados e tenha sido feita a verificação, assim que ele insere os dados corretos, a minha ul é limpa. Isso dá a entender que não há mais erro
 
     
 
@@ -94,34 +99,42 @@ function createPacienteTD(data, classe) {
 
 function pacientValidate(paciente) { 
 
-    if(ValidaPeso(paciente.peso) && ValidaAltura(paciente.altura)){
         errors = [];
 
         if(!ValidaPeso(paciente.peso)){
-            errors.push = "Peso inválido"; 
+            errors.push("Peso inválido"); 
         }
         if(!ValidaAltura(paciente.altura)){
-            errors.push = "Altura Inválida";
+            errors.push("Altura Inválida");
         }
-        if (!ValidaAltura(paciente.altura) && !ValidaPeso(paciente.peso)) {
-            errors.push = "Peso e Altura inválidos"
+        if (paciente.nome.length == 0) {
+            errors.push("Preencha o nome do paciente")
         }
+
+        if (paciente.gordura.length == 0) {
+            errors.push("Prencha o percentual de gordura")
+        }
+        /*if (!ValidaAltura(paciente.altura) && !ValidaPeso(paciente.peso)) {
+            errors.push("Peso e Altura inválidos");
+        }*/
+
         return errors;
-    }
+    
 
 }
 
 function showErrorMessage(errors) { 
     ul = document.querySelector("#msg-erro");
-    /*for (let i = 0; i < errors.length; i++) {
+    ul.innerHTML = ""; //impedir que seja adicionada toda vez a mesma mensagem a medida que o usuário executa a função
+    for (let i = 0; i < errors.length; i++) {
         errorValue = errors[i];
         li = document.createElement("li");
         li.textContent = errorValue; 
         ul.appendChild(li);   
-    }*/
-    errors.forEach(function (errorValue) { 
+    }
+    /*errors.forEach(function (errorValue) { 
         li = document.createElement("li");
         li.textContent = errorValue;
         ul.appendChild(li);   
-    });
+    });*/
 }
