@@ -7,8 +7,8 @@ title.textContent = "Aparecida Nutrição";
 
 //Seleciono todos os <tr> que possuem paciente como classe
 paciente =document.querySelectorAll(".paciente");
-pacientesCount = paciente.length;
-console.log(pacientesCount);
+//pacientesCount = paciente.length;
+//console.log(pacientesCount);
 
 for (i = 0; i < paciente.length; i++) {
 

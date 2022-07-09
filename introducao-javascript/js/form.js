@@ -40,7 +40,7 @@ function addNewPacient(event) {
     
 }
 
-buttonAdd = document.querySelector("#adicionar-paciente");
+buttonAdd = document.getElementById("adicionar-paciente");
 buttonAdd.addEventListener("click", addNewPacient);
 
 function addDataForm(form){
